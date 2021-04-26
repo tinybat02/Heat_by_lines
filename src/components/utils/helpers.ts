@@ -19,7 +19,7 @@ export const createPoint = (lonlat: Coordinate) => {
     new Style({
       image: new Circle({
         radius: 3,
-        fill: new Fill({ color: '#FFA500' }),
+        fill: new Fill({ color: 'rgba(255,165,0,0.1)' }),
       }),
     })
   );
@@ -34,7 +34,7 @@ export const createLines = (lonlat: Coordinate[], percent: number[]) => {
     line.setStyle(
       new Style({
         stroke: new Stroke({
-          color: `rgba(255,165,0,${(1 - percent[i]) * 0.3})`,
+          color: `rgba(255,165,0,${(1 - percent[i]) * 0.2})`,
         }),
       })
     );

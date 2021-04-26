@@ -78405,7 +78405,7 @@ var createPoint = function createPoint(lonlat) {
     image: new ol_style__WEBPACK_IMPORTED_MODULE_6__["Circle"]({
       radius: 3,
       fill: new ol_style__WEBPACK_IMPORTED_MODULE_6__["Fill"]({
-        color: '#FFA500'
+        color: 'rgba(255,165,0,0.1)'
       })
     })
   }));
@@ -78418,7 +78418,7 @@ var createLines = function createLines(lonlat, percent) {
     var line = new ol_Feature__WEBPACK_IMPORTED_MODULE_1__["default"](new ol_geom_LineString__WEBPACK_IMPORTED_MODULE_5__["default"]([lonlat[i], lonlat[i + 1]]).transform('EPSG:4326', 'EPSG:3857'));
     line.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_6__["Style"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_6__["Stroke"]({
-        color: "rgba(255,165,0," + (1 - percent[i]) * 0.3 + ")"
+        color: "rgba(255,165,0," + (1 - percent[i]) * 0.2 + ")"
       })
     }));
     tmp.push(line);

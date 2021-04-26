@@ -34,7 +34,7 @@ export const createLines = (lonlat: Coordinate[], percent: number[]) => {
     line.setStyle(
       new Style({
         stroke: new Stroke({
-          color: `rgba(255,165,0,${(1 - percent[i]) * 0.2})`,
+          color: `rgba(255,165,0,${(1 - percent[i]) * 0.1})`,
         }),
       })
     );

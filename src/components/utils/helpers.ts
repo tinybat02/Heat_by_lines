@@ -34,7 +34,8 @@ export const createLines = (lonlat: Coordinate[], percent: number[]) => {
     line.setStyle(
       new Style({
         stroke: new Stroke({
-          color: `rgba(255,165,0,${(1 - percent[i]) * 0.1})`,
+          // color: `rgba(255,165,0,${(1 - percent[i]) * 0.1})`,
+          color: `rgba(255,165,0,${percent[i] * 0.5})`,
         }),
       })
     );
@@ -82,8 +83,10 @@ export const processData = (data: SingleData[]) => {
     });
   }
 
-  const min = Math.log10(Math.min(...all_durations));
-  const max = Math.log10(Math.max(...all_durations));
+  // const min = Math.log10(Math.min(...all_durations));
+  // const max = Math.log10(Math.max(...all_durations));
+  const min = Math.min(...all_durations);
+  const max = Math.max(...all_durations);
   const range = max - min == 0 ? 1 : max - min;
 
   const all_features: Feature[] = [];
@@ -95,7 +98,7 @@ export const processData = (data: SingleData[]) => {
     all_features.push(
       ...createLines(
         perDeviceRoute[hash_id],
-        duration_hash[hash_id].map((n) => (Math.log10(n) - min) / range)
+        duration_hash[hash_id].map((n) => (n - min) / range)
       )
     );
   });

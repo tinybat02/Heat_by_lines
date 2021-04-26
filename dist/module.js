@@ -78418,7 +78418,8 @@ var createLines = function createLines(lonlat, percent) {
     var line = new ol_Feature__WEBPACK_IMPORTED_MODULE_1__["default"](new ol_geom_LineString__WEBPACK_IMPORTED_MODULE_5__["default"]([lonlat[i], lonlat[i + 1]]).transform('EPSG:4326', 'EPSG:3857'));
     line.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_6__["Style"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_6__["Stroke"]({
-        color: "rgba(255,165,0," + (1 - percent[i]) * 0.1 + ")"
+        // color: `rgba(255,165,0,${(1 - percent[i]) * 0.1})`,
+        color: "rgba(255,165,0," + percent[i] * 0.5 + ")"
       })
     }));
     tmp.push(line);
@@ -78461,10 +78462,12 @@ var processData = function processData(data) {
       }),
       zIndex: 2
     });
-  }
+  } // const min = Math.log10(Math.min(...all_durations));
+  // const max = Math.log10(Math.max(...all_durations));
 
-  var min = Math.log10(Math.min.apply(Math, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(all_durations)));
-  var max = Math.log10(Math.max.apply(Math, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(all_durations)));
+
+  var min = Math.min.apply(Math, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(all_durations));
+  var max = Math.max.apply(Math, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(all_durations));
   var range = max - min == 0 ? 1 : max - min;
   var all_features = [];
   Object.keys(perDeviceRoute).map(function (hash_id) {
@@ -78473,7 +78476,7 @@ var processData = function processData(data) {
     }
 
     all_features.push.apply(all_features, Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(createLines(perDeviceRoute[hash_id], duration_hash[hash_id].map(function (n) {
-      return (Math.log10(n) - min) / range;
+      return (n - min) / range;
     }))));
   });
   return new ol_layer_Vector__WEBPACK_IMPORTED_MODULE_4__["default"]({
